@@ -1,0 +1,36 @@
+<html ng-app="app">
+	<head>
+		<script src="js/angular.js"></script>
+		<style>
+			.old{
+				background-color:gray;
+			}
+			.modern{
+				background-color:blue;
+			}
+			.new{
+				background-color:gold;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-controller="MainController as main">
+			<ul>
+				<li ng-class="{
+					old:movie.year <1995,
+					modern: movie.year >= 1995 && movie.year < 2000,
+					new: movie.year >= 2000
+				}"
+					ng-repeat="movie in main.movies">
+					<p>Title: {{movie.title}}</p>
+					<p>Year: {{movie.year}}</p>
+					<p ng-hide="!movie.isPopular">Is popular</p>
+					<p ng-show="movie.year > 2000">Is kinda new</p>
+				</li>
+			</ul>
+		</div>
+		
+		<script src="js/app.js"></script>
+		<script src="js/MainController.js"></script>
+	</body>
+</html>

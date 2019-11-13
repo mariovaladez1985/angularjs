@@ -1,0 +1,31 @@
+<html ng-app="app">
+	<head>
+		<script src="js/angular.js"></script>
+		<script src="js/angular-resource.js"></script>
+	</head>
+	<body>
+		<div ng-controller="TodoController as todoController" >
+			<form ng-submit="todoController.addTodo()">
+				<input type="text" ng-model="todoController.title"/>
+				<button type="submit">Add todo</button>
+			</form>
+			<div>
+				Single todo: 
+					{{todoController.singleTodo}}
+			</div>
+			<ul>
+				<li ng-repeat="todo in todoController.list">
+					<input ng-model="todo.title" ng-blur="todoController.updateTodo(todo)"/>
+					<div>
+						{{todo.completed ? 'Completed' : 'Not completed'}}
+					</div>
+					<a href="" ng-click="todoController.deleteTodo(todo);">Delete todo</a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="js/app.js"></script>
+		<script src="js/services/TodoService.js"></script>
+		<script src="js/controllers/TodoController.js"></script>
+	</body>
+</html>
